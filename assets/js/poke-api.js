@@ -1,7 +1,8 @@
 const pokeApi = {}
 
 function convertPokeApiDetailToPokemon(pokeDetail) {
-    const pokemon = new Pokemon()
+    console.log('passou aqui 4')
+    const pokemon = {};
     pokemon.number = pokeDetail.id
     pokemon.name = pokeDetail.name
 
@@ -12,8 +13,7 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
     pokemon.type = type
 
     pokemon.photo = pokeDetail.sprites.other.dream_world.front_default
-
-    return pokemon
+    return pokemon;
 }
 
 pokeApi.getPokemonDetail = (pokemon) => {
@@ -31,4 +31,15 @@ pokeApi.getPokemons = (offset = 0, limit = 5) => {
         .then((pokemons) => pokemons.map(pokeApi.getPokemonDetail))
         .then((detailRequests) => Promise.all(detailRequests))
         .then((pokemonsDetails) => pokemonsDetails)
+}
+
+
+pokeApi.singlePokemon = async (pokemon) => {
+    const url2 = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+
+    if (url2.status === 200) {
+        console.log('passou aqui 3')
+        const data = await url2.json();
+        return convertPokeApiDetailToPokemon(data)
+      }
 }
