@@ -1,7 +1,6 @@
 const pokeApi = {}
 
 function convertPokeApiDetailToPokemon(pokeDetail) {
-    console.log('passou aqui 4')
     const pokemon = {};
     pokemon.number = pokeDetail.id
     pokemon.name = pokeDetail.name
@@ -38,7 +37,6 @@ pokeApi.singlePokemon = async (pokemon) => {
     const url2 = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
 
     if (url2.status === 200) {
-        console.log('passou aqui 3')
         const data = await url2.json();
         return convertPokeApiDetailToPokemon(data)
       }

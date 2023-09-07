@@ -12,8 +12,6 @@ let offset = 0;
 
 /* Pokemons tela principal */
 function convertPokemonToLi(pokemon) { 
-    console.log('passou 2')
-    console.log(pokemon)
     return `
         <li class="pokemon ${pokemon.type}">
             <span class="number">#${pokemon.number}</span>
@@ -21,7 +19,7 @@ function convertPokemonToLi(pokemon) {
 
             <div class="detail">
                 <ol class="types">
-                    
+                    ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
                 </ol>
 
                 <img src="${pokemon.photo}"
@@ -75,10 +73,19 @@ loadMoreButton.addEventListener('click', () => {
     }
 })
 
+
+/* Click pesquisa o pokemon digitado na barra de pesquisa, 
+deletando todos os outros e deixando apenas o pokemon pesquisado */
 button_search.addEventListener('click', async () => {
-    console.log('passou aqui 6');
-    
-    const newHtml2 = convertPokemonToLi(await pokeApi.singlePokemon(input_search.value))
+    pokemonList.innerHTML = '';
+    const newHtml2 = convertPokemonToLi(await pokeApi.singlePokemon((input_search.value).toLowerCase()))
     pokemonList.innerHTML += newHtml2
 })
 
+input_search.addEventListener('keydown', async (event) => {
+    if (event.key === 'Enter'){
+        pokemonList.innerHTML = '';
+        const newHtml2 = convertPokemonToLi(await pokeApi.singlePokemon((input_search.value).toLowerCase()))
+        pokemonList.innerHTML += newHtml2
+    }
+})
