@@ -1,14 +1,16 @@
+/* First Page */
+
 nav{
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-nav div{
+.nav-main div{
     margin: 2%;
 }
 
-nav .search{
+.nav-main .search{
     text-align: center;
     background-color: #fff;
     padding: 10px;
@@ -16,13 +18,13 @@ nav .search{
     box-shadow: 5px 10px 8px #888888;
 }
 
-nav .search input{
+.nav-main .search input{
     border: none;
     text-align: center;
     outline: none;
 }
 
-nav .search button{
+.nav-main .search button{
     background-color: #678fee;
     border-radius: 10px;
     border: none;
@@ -30,8 +32,42 @@ nav .search button{
 }
 
 
-nav .logo-pokemon{
+.nav-main img{
     max-width: 150px;
+}
+
+/* second page */
+
+.second-main-page{
+    display: grid;
+    grid-template-rows: 1fr 3fr 2fr;
+}
+
+.second-main-page .info-pokemons{
+    background-color: #fff;
+    border-top-left-radius: 30px;
+}
+
+.second-main-page .info-pokemons nav{
+    border-bottom: 1px solid #888888;
+}
+
+.second-main-page .info-pokemons p:hover{
+    border-bottom: 1px solid #77c850;
+}
+
+.second-main-page .info-pokemons ul{
+    list-style: none;
+
+}
+
+.second-main-page .info-pokemons h3{
+    margin: 5%;
+}
+
+
+.second-page-section img{
+    max-width: 100px;
 }
 
 
@@ -198,7 +234,7 @@ nav .logo-pokemon{
 }
 
 @media screen and (max-width: 769px){
-    nav{
+    .nav-main{
         flex-direction: column;
     }
 }
